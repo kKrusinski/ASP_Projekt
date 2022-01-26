@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EquipmentRentalService.Database.Entities
+namespace EquipmentRentalService.Models
 {
     public class RentalEquipment
     {
@@ -13,8 +13,7 @@ namespace EquipmentRentalService.Database.Entities
         [Required(ErrorMessage = "Equipment must have a name!")]
         public string Name { get; set; }
         public string Description { get; set; }
-        [Required(ErrorMessage = "Category field may not be empty!")]
-        public Category Category { get; set; }
+
         [Required]
         [Display(Name = "Added")]
         public DateTimeOffset CreationDate { get; set; } = DateTimeOffset.Now;

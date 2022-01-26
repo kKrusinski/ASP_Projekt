@@ -1,5 +1,5 @@
 ﻿using EquipmentRentalService.Database;
-using EquipmentRentalService.Database.Entities;
+using EquipmentRentalService.Models;
 using EquipmentRentalService.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,12 +18,12 @@ namespace EquipmentRentalService.Controllers
         public DateTimeOffset RentTo { get; set; }
     }
 
-public class EquipmentController : Controller
+    public class EquipmentController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IRentalService _rentalService;
         private readonly UserManager<IdentityUser> _userManager;
-        public EquipmentController(ApplicationDbContext dbContext, 
+        public EquipmentController(ApplicationDbContext dbContext,
                                    IRentalService rentalService,
                                    UserManager<IdentityUser> userManager)
         {
@@ -78,5 +78,56 @@ public class EquipmentController : Controller
 
             return RedirectToAction("Index");
         }
+        [HttpGet]
+
+        public IActionResult List()
+        {
+            return View(_rentalService.GetAll());
+        }
+        [HttpGet]
+        public IActionResult AddEquipment()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult AddEquipment(RentalEquipment equipment)
+        {
+            _rentalService.AddEquipment(equipment);
+            return RedirectToAction("List");
+        }
+        [HttpPost]
+        public IActionResult DeleteEquipment(int id)
+        {
+
+            _rentalService.DeleteEquipment(id);
+
+            return RedirectToAction("List");
+
+
+        }
+
+        [HttpGet]
+        [Route("{controller}/EditEquipment/{id}")]
+        public IActionResult EditEquipment(int? id)
+        {
+            RentalEquipment equipment = _rentalService.GetItem(id.Value);
+
+
+            return View(equipment);
+
+        }
+
+        [HttpPost]
+        [Route("{controller}/EditEquipment/{id}")]
+        public ActionResult Edit(RentalEquipment edit)
+        {
+            _rentalService.EditEquipment(edit);
+            return RedirectToAction("List");
+        }
+
+
     }
 }

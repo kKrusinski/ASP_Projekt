@@ -312,3 +312,6 @@ C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalServic
 C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalService\obj\Debug\net5.0\EquipmentRentalService.pdb
 C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalService\obj\Debug\net5.0\EquipmentRentalService.genruntimeconfig.cache
 C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalService\obj\Debug\net5.0\Razor\Views\Equipment\List.cshtml.g.cs
+C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalService\obj\Debug\net5.0\Razor\Views\Equipment\AddEquipment.cshtml.g.cs
+C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalService\obj\Debug\net5.0\Razor\Views\Equipment\EditEquipment.cshtml.g.cs
+C:\Users\Frodo\Documents\wypozyczalnia_projekt\asp_projekt\EquipmentRentalService\obj\Debug\net5.0\Razor\Views\Home\AvailableEquipment.cshtml.g.cs

@@ -1,4 +1,5 @@
-﻿using EquipmentRentalService.Database.Entities;
+﻿using EquipmentRentalService.Database;
+using EquipmentRentalService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,16 @@ namespace EquipmentRentalService.Services
 {
     public interface IRentalService
     {
-        public Task<IEnumerable<RentalHistory>> GetAllHistory(string userId = null);
-        public Task<IEnumerable<RentalEquipment>> GetAllRented(string userId = null);
-        public Task<IEnumerable<RentalEquipment>> GetAllAvailable(int? categoryId = null);
+        public List<RentalHistory> GetAllHistory(string userId = null);
+        public List<RentalEquipment> GetAllRented(string userId = null);
+        public List<RentalEquipment> GetAllAvailable(int? categoryId = null);
+        public List<RentalEquipment> GetAll(int? categoryId = null);
+
+        public void AddEquipment(RentalEquipment equipment);
+        public void DeleteEquipment(int id);
+
+        public void EditEquipment(RentalEquipment equipment);
+        public RentalEquipment GetItem(int id);
 
         public Task<double> CalculatePrice(int equipmentId, DateTimeOffset from, DateTimeOffset to);
         public Task<double> CalculatePrice(int rentalHistoryEntryId);

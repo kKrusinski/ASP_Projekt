@@ -1,5 +1,6 @@
 ﻿using EquipmentRentalService.Database;
-using EquipmentRentalService.Database.Entities;
+
+using EquipmentRentalService.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace EquipmentRentalService.Services
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<RentalHistory>> GetAllHistory(string userId = null)
+        public List<RentalHistory> GetAllHistory(string userId = null)
         {
             IQueryable<RentalHistory> historyQuery = _dbContext.RentalHistory;
 
@@ -25,22 +26,28 @@ namespace EquipmentRentalService.Services
                 historyQuery = historyQuery.Where(x => x.RentingUser.Id.Contains(userId));
             }
 
-            var history = await historyQuery.ToListAsync();
+            var history = historyQuery.ToList();
             return history;
         }
 
-        public async Task<IEnumerable<RentalEquipment>> GetAllAvailable(int? categoryId = null)
+        public List<RentalEquipment> GetAllAvailable(int? categoryId = null)
         {
             IQueryable<RentalEquipment> equipmentQuery = _dbContext.RentalEquipment;
 
-            if (categoryId != null) equipmentQuery = equipmentQuery.Where(x => x.IsAvailable && x.Category.ID == categoryId);
+            if (categoryId != null) equipmentQuery = equipmentQuery.Where(x => x.IsAvailable);
             else equipmentQuery = equipmentQuery.Where(x => x.IsAvailable);
 
-            var availableEquipment = await equipmentQuery.ToListAsync();
+            var availableEquipment = equipmentQuery.ToList();
             return availableEquipment;
         }
+        public List<RentalEquipment> GetAll(int? categoryId = null)
+        {
+            List<RentalEquipment> equipment = _dbContext.RentalEquipment.ToList();
 
-        public async Task<IEnumerable<RentalEquipment>> GetAllRented(string userId = null)
+            return equipment;
+        }
+
+        public List<RentalEquipment> GetAllRented(string userId = null)
         {
             IQueryable<RentalEquipment> equipmentQuery = _dbContext.RentalEquipment;
 
@@ -50,15 +57,47 @@ namespace EquipmentRentalService.Services
 
                 historyQuery = historyQuery.Where(x => x.RentingUser.Id.Contains(userId) && x.ReturnedDate == DateTime.MinValue);
                 equipmentQuery = equipmentQuery.Where(x => !x.IsAvailable);
-                    
-                // Linq Join hQ x eQ?
+
+
 
             }
 
             else equipmentQuery = equipmentQuery.Where(x => !x.IsAvailable);
 
-            var rentedEquipment = await equipmentQuery.ToListAsync();
+            var rentedEquipment = equipmentQuery.ToList();
             return rentedEquipment;
+        }
+
+        public void AddEquipment(RentalEquipment equipment)
+
+        {
+            _dbContext.RentalEquipment.Add(equipment);
+            _dbContext.SaveChanges();
+        }
+        public RentalEquipment GetItem(int id)
+
+        {
+            var item = _dbContext.RentalEquipment.Find(id);
+            return item;
+        }
+
+        public void DeleteEquipment(int id)
+        {
+            RentalEquipment equipment = _dbContext.RentalEquipment.Find(id);
+            _dbContext.RentalEquipment.Remove(equipment);
+            _dbContext.SaveChanges();
+        }
+        public void EditEquipment(RentalEquipment equipment)
+        {
+            var model = _dbContext.RentalEquipment.Find(equipment.ID);
+            model.Name = equipment.Name;
+            model.Description = equipment.Description;
+            model.IsAvailable = equipment.IsAvailable;
+            model.OverdueRate = equipment.OverdueRate;
+            model.DailyRentPrice = equipment.DailyRentPrice;
+            model.BaseRentPrice = equipment.BaseRentPrice;
+            _dbContext.RentalEquipment.Update(model);
+            _dbContext.SaveChanges();
         }
 
         public async Task<double> CalculatePrice(int equipmentId, DateTimeOffset from, DateTimeOffset to)
@@ -87,6 +126,7 @@ namespace EquipmentRentalService.Services
                 return price + (((returnDate - historyEntry.RentedDue).Days * equipment.DailyRentPrice) / 100) * equipment.OverdueRate;
             else return price;
         }
+
 
     }
 }

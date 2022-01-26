@@ -8,11 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EquipmentRentalService.Database.Entities;
 using Microsoft.Data.SqlClient;
 using EquipmentRentalService.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using EquipmentRentalService.Models;
 
 namespace EquipmentRentalService
 {
@@ -64,7 +64,7 @@ namespace EquipmentRentalService
                 {
                     dbContext.Database.Migrate(); // Apply pending migrations in developer mode
                 }
-                catch (SqlException){ }
+                catch (SqlException) { }
             }
             else
             {
@@ -73,14 +73,13 @@ namespace EquipmentRentalService
 
             if (createdDb) // Fill newly created database with test records
             {
-                // Categories
-                var catUnassigned = new Category { Name = "Unassigned"};
+
 
                 // RentalEquipment
                 var equTest = new RentalEquipment
                 {
                     Name = "Koparka CAT",
-                    Category = catUnassigned,
+
                     BaseRentPrice = 250.00,
                     DailyRentPrice = 75.00,
                     OverdueRate = 15,
@@ -90,7 +89,7 @@ namespace EquipmentRentalService
                 var equTest1 = new RentalEquipment
                 {
                     Name = "Koparka CAT2",
-                    Category = catUnassigned,
+
                     BaseRentPrice = 250.00,
                     DailyRentPrice = 75.00,
                     OverdueRate = 15
@@ -99,7 +98,7 @@ namespace EquipmentRentalService
                 var equTest2 = new RentalEquipment
                 {
                     Name = "Koparka CAT3",
-                    Category = catUnassigned,
+
                     BaseRentPrice = 250.00,
                     DailyRentPrice = 75.00,
                     OverdueRate = 15
@@ -138,7 +137,6 @@ namespace EquipmentRentalService
 
                 dbContext.Users.Add(user_root);
                 dbContext.Users.Add(user_toor);
-                dbContext.Categories.Add(catUnassigned);
                 dbContext.RentalEquipment.Add(equTest);
                 dbContext.RentalEquipment.Add(equTest1);
                 dbContext.RentalEquipment.Add(equTest2);

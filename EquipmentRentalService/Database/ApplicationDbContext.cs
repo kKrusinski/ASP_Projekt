@@ -1,4 +1,5 @@
-﻿using EquipmentRentalService.Database.Entities;
+﻿using EquipmentRentalService.Database;
+using EquipmentRentalService.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,6 @@ namespace EquipmentRentalService.Database
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<RentalEquipment> RentalEquipment { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<RentalHistory> RentalHistory { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
@@ -22,9 +22,6 @@ namespace EquipmentRentalService.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Category>()
-                .HasIndex(c => c.Name).IsUnique();
 
             modelBuilder.Entity<IdentityUser>(entity => entity.ToTable(name: "Users"));
             modelBuilder.Entity<IdentityRole>(entity => entity.ToTable(name: "Roles"));

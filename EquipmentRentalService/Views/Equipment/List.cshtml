@@ -1,1 +1,51 @@
 ﻿
+@model List<RentalEquipment>
+@{
+    ViewData["Title"] = "Equipment List";
+    @using EquipmentRentalService.Models;
+}
+<div>
+    <h1>Equipment</h1>
+    <table class="tabela">
+        <tr>
+            <td>ID </td>
+            <td>BaseRentPrice </td>
+            <td>DailyRentPrice </td>
+            <td>CreationDate </td>
+            <td>Description</td>
+            <td>IsAvailable</td>
+            <td>Name</td>
+            <td>OverdueRate</td>
+            <td>Delete</td>
+            <td>Edit</td>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.ID </td>
+                <td> @item.BaseRentPrice </td>
+                <td> @item.DailyRentPrice </td>
+                <td> @item.CreationDate </td>
+                <td> @item.Description</td>
+                <td> @item.IsAvailable</td>
+                <td> @item.Name</td>
+                <td> @item.OverdueRate</td>
+                <td>
+                    @using (@Html.BeginForm("DeleteEquipment", "Equipment", new { id = item.ID }))
+                    {
+                        <input type="submit" class="form-control btn-up btn btn-primary submit" value="-" />
+                    }
+                </td>
+                <td>
+                    <button type="button" class="form-control btn-kosz btn btn-primary submit px-3" onclick='window.location = "@Url.Action("EditEquipment", "Equipment", new { id = item.ID})";'>Edit</button>
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<button type="button" class="form-control btn-kosz btn btn-primary submit px-3" onclick='window.location = "@Url.Action("AddEquipment", "Equipment")";'>Add Equipment</button>
