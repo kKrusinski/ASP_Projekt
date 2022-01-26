@@ -8077,11 +8077,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Frodo\\Desktop\\asp_projekt\\EquipmentRentalService\\EquipmentRentalService.csproj",
+      "projectUniqueName": "C:\\Users\\Frodo\\Documents\\wypozyczalnia_projekt\\asp_projekt\\EquipmentRentalService\\EquipmentRentalService.csproj",
       "projectName": "EquipmentRentalService",
-      "projectPath": "C:\\Users\\Frodo\\Desktop\\asp_projekt\\EquipmentRentalService\\EquipmentRentalService.csproj",
+      "projectPath": "C:\\Users\\Frodo\\Documents\\wypozyczalnia_projekt\\asp_projekt\\EquipmentRentalService\\EquipmentRentalService.csproj",
       "packagesPath": "C:\\Users\\Frodo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Frodo\\Desktop\\asp_projekt\\EquipmentRentalService\\obj\\",
+      "outputPath": "C:\\Users\\Frodo\\Documents\\wypozyczalnia_projekt\\asp_projekt\\EquipmentRentalService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Frodo\\AppData\\Roaming\\NuGet\\NuGet.Config",

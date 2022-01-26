@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vr8Iawjob3hEydwM1eIavyiR2oJfIneQKsiTCRMFVOhPyG2Z/QKvDiKukzUZKQJEPDqRqj7SDrtYsKf8KAJP5A==",
+  "dgSpecHash": "mo8qVEU23p4lLQv2+NfO1+DwomJFGuL++2ygu3T1TjsUlLHLpPh5HcItits7+KD953gFtupSqajVkT4U5SGZcA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Frodo\\Desktop\\asp_projekt\\EquipmentRentalService\\EquipmentRentalService.csproj",
+  "projectFilePath": "C:\\Users\\Frodo\\Documents\\wypozyczalnia_projekt\\asp_projekt\\EquipmentRentalService\\EquipmentRentalService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Frodo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Frodo\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
