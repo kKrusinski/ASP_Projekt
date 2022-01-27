@@ -36,7 +36,7 @@ namespace EquipmentRentalService
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
+                options.Password.RequireUppercase = true;
                 options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
