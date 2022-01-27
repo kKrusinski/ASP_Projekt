@@ -11,8 +11,8 @@ namespace EquipmentRentalService.Services
     {
         public List<RentalHistory> GetAllHistory(string userId = null);
         public List<RentalEquipment> GetAllRented(string userId = null);
-        public List<RentalEquipment> GetAllAvailable(int? categoryId = null);
-        public List<RentalEquipment> GetAll(int? categoryId = null);
+        public List<RentalEquipment> GetAllAvailable();
+        public List<RentalEquipment> GetAll();
 
         public void AddEquipment(RentalEquipment equipment);
         public void DeleteEquipment(int id);

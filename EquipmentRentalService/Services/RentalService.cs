@@ -30,17 +30,17 @@ namespace EquipmentRentalService.Services
             return history;
         }
 
-        public List<RentalEquipment> GetAllAvailable(int? categoryId = null)
+        public List<RentalEquipment> GetAllAvailable()
         {
             IQueryable<RentalEquipment> equipmentQuery = _dbContext.RentalEquipment;
 
-            if (categoryId != null) equipmentQuery = equipmentQuery.Where(x => x.IsAvailable);
-            else equipmentQuery = equipmentQuery.Where(x => x.IsAvailable);
+           
+            equipmentQuery = equipmentQuery.Where(x => x.IsAvailable);
 
             var availableEquipment = equipmentQuery.ToList();
             return availableEquipment;
         }
-        public List<RentalEquipment> GetAll(int? categoryId = null)
+        public List<RentalEquipment> GetAll()
         {
             List<RentalEquipment> equipment = _dbContext.RentalEquipment.ToList();
 
